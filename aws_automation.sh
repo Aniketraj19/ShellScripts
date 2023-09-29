@@ -18,4 +18,6 @@ print_red "Printing all the IAM users" >> /home/arv/resources.txt
 echo "The IAM users are: " >> /home/arv/resources.txt
 aws iam list-users | grep -i UserName | awk '{print $2}' >> /home/arv/resources.txt
 
+echo "This is just for checking"
+
 
