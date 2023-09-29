@@ -22,7 +22,9 @@ echo "The directory $1 is being used: "
 ls -l $1 | awk '{print $9}'
 
 #count the number of files and directories
-ls -l $1 | wc -l
+count=$(ls -l $1 | wc -l)
+echo "Total number of files available in the directory: $count"
+
 
 
 #to store the size of individual files in the directory
