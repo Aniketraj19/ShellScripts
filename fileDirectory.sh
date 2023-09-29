@@ -9,19 +9,22 @@
 
 function memory_usage() {
     mem=0
-    for item in $1
+    for item in $(cat /home/arv/memory)
     do
-        size=$(stat -c %s "$item")
-        mem=$((mem + size))
+        mem=$((mem + item))
     done
-    echo "The total size of the files in the directory is: $mem bytes"
+    mem=$((mem / 1024))
+    echo "The total size of the files in the directory is: $mem kb"
 }
 
-
+#list all files and directories in the given directory
 echo "The directory $1 is being used: "
-ls -l $1 
+ls -l $1 | awk '{print $9}'
 
+#count the number of files and directories
 ls -l $1 | wc -l
 
+
+#to store the size of individual files in the directory
 ls -l $1 | awk '{print $5}' > /home/arv/memory
 memory_usage $1
